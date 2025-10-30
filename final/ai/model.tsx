@@ -1,5 +1,4 @@
 'use server';
-import ComponentFactory from '@/components/ComponentFactory';
 
 import { ollama, createOllama } from 'ollama-ai-provider-v2';
 import { generateText, type ModelMessage, Output, tool } from 'ai';
@@ -8,6 +7,8 @@ import reactElementToJSXString from 'react-element-to-jsx-string';
 
 import availableComponents from '../availableComponents.json';
 import componentProps from '../componentProps.json';
+
+import ComponentFactory from '@/components/ComponentFactory/ComponentFactory';
 
 // const ollama = createOllama({
 //   baseURL: 'http://v0workshop.ameersami.com:11434/api'
@@ -54,8 +55,6 @@ export type Component = z.infer<typeof componentSchema>;
 const schema = componentsArraySchema;
 
 export default async (messages: Array<ModelMessage>) => {
-
-  console.log('messages', messages);
 
   const { response, experimental_output } = await generateText({
     model: ollama('qwen3-coder'),
@@ -114,6 +113,8 @@ export default async (messages: Array<ModelMessage>) => {
       components: experimental_output
     })
   );
+
+  console.log(experimental_output);
 
   return {
     componentTextString: reactElementToJSXString(comps),

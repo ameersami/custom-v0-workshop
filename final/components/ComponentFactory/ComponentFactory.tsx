@@ -10,8 +10,6 @@ const DynamicComponent = ({ type, props, children }: any) => {
 
 const ComponentFactory = ({ components }: { components: Array<Component> }) => {
 
-  console.log('components', JSON.parse(JSON.stringify(components)));
-
   const generatedComponents = components.map(generateChild);
 
   return (
