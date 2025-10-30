@@ -1,0 +1,109 @@
+.container {
+  width: 100vw;
+  height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  background: white;
+  padding: 24px;
+}
+
+.chatContainer {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  padding-bottom: 16px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  overflow-y: auto;
+  flex: 1;
+  gap: 64px;
+}
+
+.chatContainer > * {
+  flex-shrink: 0;
+}
+
+.inputContainer {
+  width: 100%;
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: 16px;
+
+  padding: 8px;
+}
+
+.inputContainer input {
+  flex: 1;
+}
+
+.userInputMessage {
+  width: 50%;
+  align-self: flex-end;
+  padding: 16px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-sizing: border-box;
+  background: oklch(92.9% 0.013 255.508);
+}
+
+.submitButton {
+  position: relative;
+}
+
+.submitButton p {
+  opacity: 1;
+  transition: 0.2s ease-in-out opacity;
+}
+
+.submitButton > svg {
+  position: absolute;
+}
+
+.submitButton:has(svg) p {
+  opacity: 0;
+}
+
+.generatedUIContainer {
+  width: 50%;
+  align-self: flex-start;
+  padding: 16px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-sizing: border-box;
+  background: oklch(94.6% 0.033 307.174);
+  position: relative;
+}
+
+.downloadGeneratedCodeButton {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+
+  width: 24px;
+  height: 24px;
+  border: none;
+  background: none;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+.downloadGeneratedCodeButton svg {
+  width: 16px;
+  height: 16px;
+}
+
+.downloadGeneratedCodeButton svg path {
+  transition: 0.2s ease-in-out fill;
+}
+
+.downloadGeneratedCodeButton:hover svg path {
+  fill: oklch(49.6% 0.265 301.924);
+}
