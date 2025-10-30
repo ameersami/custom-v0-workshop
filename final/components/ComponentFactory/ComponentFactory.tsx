@@ -41,7 +41,7 @@ const generateChild = (component: Component) => {
 
   const mappedProps: Record<string, any> = {};
   const children = [];
-  component.props.forEach(prop => {
+  component?.props?.forEach(prop => {
     mappedProps[prop.propName] = prop.propValue;
   });
   if (mappedProps?.children) {
