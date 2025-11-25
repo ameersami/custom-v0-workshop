@@ -68,13 +68,12 @@ export default async (messages: Array<ModelMessage>) => {
           componentName: z.string().describe('Name of the component to retrieve props for'),
         }),
         execute: async ({ componentName }) => {
-          console.log('Retrieving props for ', componentName.trim());
 
           if ((componentProps as any)[componentName]) {
             return (componentProps as any)[componentName]
           }
 
-          return 'There are no props available for a component with that name.'
+          return `The ${componentName} component does not exist.`
         }
       })
     },
@@ -82,7 +81,7 @@ export default async (messages: Array<ModelMessage>) => {
       {
         role: 'system',
         content: `
-          You are a helpful agent that creates a JSON schema to construct a user interface. The schema should match the following format:
+          You are a helpful agent that creates a JSON schema to construct a web application interface. The schema should match the following format:
           {
             components: [{
               componentName: string;
@@ -94,14 +93,16 @@ export default async (messages: Array<ModelMessage>) => {
             }]
           }
 
-          To retrieve all of the available component props you must call the provided tool, you are not allowed to come up with your own prop names for any component. Each component will have a 12 column grid within it to position its children components.
+          To retrieve all of the available component props you must call the provided tool, you are not allowed to create your own prop names for any component. You are not allowed to create a new custom component.
 
-          You must generate a schema for the interface.
+          A Text component does not exist.
+
+          You must generate a schema for the web application interface that adheres to what the user is requesting via the prompt.
+
+          You may use any tailwind CSS utility classes on any component through the className prop to add styles.
 
           Here is a list of the components available to you:
           ${availableComponents.map(component => `Component name: ${component.title}\nComponent description: ${component.description}`)}
-
-          You may use any tailwind CSS utility classes on each component through the className prop to add styles.
         `
       },
       ...messages

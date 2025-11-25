@@ -18,11 +18,11 @@ export default class ErrorBoundary extends React.Component<ErrorBoundaryProps, E
     this.state = { hasError: false };
   }
 
-  static getDerivedStateFromError(error: any): Partial<ErrorBoundaryState> {
+  static getDerivedStateFromError(): Partial<ErrorBoundaryState> {
     return { hasError: true };
   }
 
-  componentDidCatch(error: any, info: any) {
+  componentDidCatch(error: any) {
     this.setState({
       hasError: true,
       errorMessage: error

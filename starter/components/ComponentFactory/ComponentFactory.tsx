@@ -4,7 +4,7 @@ import { Component } from "@/ai/model";
 import { getComponent } from "@/getComponents";
 import { createElement } from "react";
 
-const DynamicComponent = ({ type, props, children }: any) => {
+const DynamicComponent = ({ type, props, children }) => {
   return createElement(type, props, children);
 }
 
@@ -30,7 +30,10 @@ const generateChild = (component: Component) => {
   if (!FoundComponent) {
     const firstChar = component.componentName.charAt(0);
     if (firstChar === firstChar.toLowerCase()) {
-      FoundComponent = (props) => DynamicComponent({ type: component.componentName, ...props }) as any;
+      const NewFoundComponent = (props) => DynamicComponent({ type: component.componentName, ...props });
+      NewFoundComponent.displayName = component.componentName;
+      FoundComponent = NewFoundComponent;
+      FoundComponent.displayName = component.componentName;
     } else {
       return (
         <></>
@@ -40,8 +43,8 @@ const generateChild = (component: Component) => {
   }
 
   const mappedProps: Record<string, any> = {};
-  const children = [];
-  component.props.forEach(prop => {
+  const children: Array<any> = [];
+  component?.props?.forEach(prop => {
     mappedProps[prop.propName] = prop.propValue;
   });
   if (mappedProps?.children) {

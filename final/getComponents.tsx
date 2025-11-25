@@ -158,14 +158,6 @@ export function getComponent(componentName: string): React.ComponentType<any> | 
     'DropdownMenuSubTrigger': UIComponents.DropdownMenuSubTrigger,
     'DropdownMenuSubContent': UIComponents.DropdownMenuSubContent,
     
-    // Form
-    'FormItem': UIComponents.FormItem,
-    'FormLabel': UIComponents.FormLabel,
-    'FormControl': UIComponents.FormControl,
-    'FormDescription': UIComponents.FormDescription,
-    'FormMessage': UIComponents.FormMessage,
-    'FormField': UIComponents.FormField,
-    
     // Hover Card
     'HoverCard': UIComponents.HoverCard,
     'HoverCardTrigger': UIComponents.HoverCardTrigger,
